@@ -1,0 +1,94 @@
+mysql> use saveetha;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_saveetha |
++--------------------+
+| mentee             |
+| mentees            |
++--------------------+
+2 rows in set (0.00 sec)
+
+mysql> select*from mentee;
++-----------+----------+-------+----------+------------+
+| regno     | name     | dept  | address  | fathername |
++-----------+----------+-------+----------+------------+
+| 192224036 | abhijith | ai&ds | banglore | venkatesh  |
+| 192224060 | akhil    | bme   | guntur   | prasad     |
+| 192224050 | vamsi    | cse   | chittor  | ram        |
+| 192224037 | mithil   | ai&ds | banglore | deepak     |
++-----------+----------+-------+----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentee where dept="cse";
++-----------+-------+------+---------+------------+
+| regno     | name  | dept | address | fathername |
++-----------+-------+------+---------+------------+
+| 192224050 | vamsi | cse  | chittor | ram        |
++-----------+-------+------+---------+------------+
+1 row in set (0.00 sec)
+
+mysql> select*from mentee where name="abhijith";
++-----------+----------+-------+----------+------------+
+| regno     | name     | dept  | address  | fathername |
++-----------+----------+-------+----------+------------+
+| 192224036 | abhijith | ai&ds | banglore | venkatesh  |
++-----------+----------+-------+----------+------------+
+1 row in set (0.00 sec)
+
+mysql> alter table mentee add marks int(4);
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> update mentee set marks=90 where dept="ai&ds";
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update mentee set marks=85 where dept="cse";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentee set marks=92 where name="vamsi";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentee;
++-----------+----------+-------+----------+------------+-------+
+| regno     | name     | dept  | address  | fathername | marks |
++-----------+----------+-------+----------+------------+-------+
+| 192224036 | abhijith | ai&ds | banglore | venkatesh  |    90 |
+| 192224060 | akhil    | bme   | guntur   | prasad     |  NULL |
+| 192224050 | vamsi    | cse   | chittor  | ram        |    92 |
+| 192224037 | mithil   | ai&ds | banglore | deepak     |    90 |
++-----------+----------+-------+----------+------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentee where name like 'a%';
++-----------+----------+-------+----------+------------+-------+
+| regno     | name     | dept  | address  | fathername | marks |
++-----------+----------+-------+----------+------------+-------+
+| 192224036 | abhijith | ai&ds | banglore | venkatesh  |    90 |
+| 192224060 | akhil    | bme   | guntur   | prasad     |  NULL |
++-----------+----------+-------+----------+------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select*from mentee where dept like '90%';
+Empty set (0.00 sec)
+
+mysql> select*from mentee where dept like '%a%';
++-----------+----------+-------+----------+------------+-------+
+| regno     | name     | dept  | address  | fathername | marks |
++-----------+----------+-------+----------+------------+-------+
+| 192224036 | abhijith | ai&ds | banglore | venkatesh  |    90 |
+| 192224037 | mithil   | ai&ds | banglore | deepak     |    90 |
++-----------+----------+-------+----------+------------+-------+
+2 rows in set (0.00 sec)
+
+
+mysql> select*from mentee where address like 'c%';
++-----------+-------+------+---------+------------+-------+
+| regno     | name  | dept | address | fathername | marks |
++-----------+-------+------+---------+------------+-------+
+| 192224050 | vamsi | cse  | chittor | ram        |    92 |
++-----------+-------+------+---------+------------+-------+
+1 row in set (0.00 sec)

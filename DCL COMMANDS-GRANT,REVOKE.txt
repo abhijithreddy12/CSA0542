@@ -1,0 +1,82 @@
+mysql> use saveetha;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_saveetha |
++--------------------+
+| dept               |
+| marks_view         |
+| mdept              |
+| mentee             |
+| mentee1            |
+| mentees            |
+| movies             |
+| per                |
+| sdept              |
+| tdept              |
++--------------------+
+10 rows in set (0.02 sec)
+
+mysql> desc mentee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| regno      | int         | YES  |     | NULL    |       |
+| name       | varchar(20) | YES  |     | NULL    |       |
+| dept       | varchar(10) | YES  |     | NULL    |       |
+| address    | varchar(10) | YES  |     | NULL    |       |
+| fathername | varchar(10) | YES  |     | NULL    |       |
+| marks      | int         | YES  |     | NULL    |       |
+| subject    | varchar(20) | YES  | MUL | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql> create user gowtham;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> grant all on student to gowtham;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for gowtham;
++---------------------------------------------------------------+
+| Grants for gowtham@%                                          |
++---------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `gowtham`@`%`                           |
+| GRANT ALL PRIVILEGES ON `saveetha`.`student` TO `gowtham`@`%` |
++---------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> revoke all on student from gowtham;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for gowtham;
++-------------------------------------+
+| Grants for gowtham@%                |
++-------------------------------------+
+| GRANT USAGE ON *.* TO `gowtham`@`%` |
++-------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> grant select,update on mentee to gowtham;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for gowtham;
++--------------------------------------------------------------+
+| Grants for gowtham@%                                         |
++--------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `gowtham`@`%`                          |
+| GRANT SELECT, UPDATE ON `saveetha`.`mentee` TO `gowtham`@`%` |
++--------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> revoke update on mentee from gowtham;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for gowtham;
++------------------------------------------------------+
+| Grants for gowtham@%                                 |
++------------------------------------------------------+
+| GRANT USAGE ON *.* TO `gowtham`@`%`                  |
+| GRANT SELECT ON `saveetha`.`mentee` TO `gowtham`@`%` |
++------------------------------------------------------+
+2 rows in set (0.00 sec)

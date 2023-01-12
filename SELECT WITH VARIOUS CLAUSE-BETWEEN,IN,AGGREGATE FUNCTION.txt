@@ -1,0 +1,85 @@
+mysql> use saveetha;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_saveetha |
++--------------------+
+| mentee             |
+| mentees            |
++--------------------+
+2 rows in set (0.00 sec)
+
+mysql> alter table mentee add subject varchar(20);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update mentee set subject="cn" where dept="cse";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentee set subject="dbms" where dept="ai&ds";
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update mentee set subject="bioevs" where dept="bme";
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentee;
++-----------+----------+-------+----------+------------+-------+---------+
+| regno     | name     | dept  | address  | fathername | marks | subject |
++-----------+----------+-------+----------+------------+-------+---------+
+| 192224036 | abhijith | ai&ds | banglore | venkatesh  |    90 | dbms    |
+| 192224060 | akhil    | bme   | guntur   | prasad     |  NULL | bioevs  |
+| 192224050 | vamsi    | cse   | chittor  | ram        |    92 | cn      |
+| 192224037 | mithil   | ai&ds | banglore | deepak     |    90 | dbms    |
++-----------+----------+-------+----------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentee where marks between 85 and 95;
++-----------+----------+-------+----------+------------+-------+---------+
+| regno     | name     | dept  | address  | fathername | marks | subject |
++-----------+----------+-------+----------+------------+-------+---------+
+| 192224036 | abhijith | ai&ds | banglore | venkatesh  |    90 | dbms    |
+| 192224050 | vamsi    | cse   | chittor  | ram        |    92 | cn      |
+| 192224037 | mithil   | ai&ds | banglore | deepak     |    90 | dbms    |
++-----------+----------+-------+----------+------------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentee where marks not between 90 and 95;
+Empty set (0.00 sec)
+
+mysql> select*from mentee where marks not between 85 and 95;
+Empty set (0.00 sec)
+
+mysql> select sum(marks) from mentee where dept="cse";
++------------+
+| sum(marks) |
++------------+
+|         92 |
++------------+
+1 row in set (0.02 sec)
+
+mysql> select avg(marks) as average from mentee;
++---------+
+| average |
++---------+
+| 90.6667 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select min(marks) as minimum from mentee;
++---------+
+| minimum |
++---------+
+|      90 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select max(marks) as maximum from mentee;
++---------+
+| maximum |
++---------+
+|      92 |
++---------+
+1 row in set (0.00 sec)

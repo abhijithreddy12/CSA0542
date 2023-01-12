@@ -1,0 +1,53 @@
+mysql> use saveetha;
+Database changed
+
+mysql> create table mentee(regno int(10),name varchar(20),dept varchar(10),address varchar(10),fathername varchar(10));
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+mysql> insert into mentee values(192224036,"abhijith","ai&ds","nellore","venkatesh");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mentee values(192224060,"akhil","ai&ds","guntur","prasad");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mentee values(192224050,"vamsi","cse","chittor","ram");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mentee values(191123481,"dinesh","cse","kovur","dev");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mentee values(192224037,"mithil","ai&ds","tirupathi","deepak");
+Query OK, 1 row affected (0.01 sec)
+
+select*from mentee' at line 1
+mysql> select*from mentee;
++-----------+----------+-------+-----------+------------+
+| regno     | name     | dept  | address   | fathername |
++-----------+----------+-------+-----------+------------+
+| 192224036 | abhijith | ai&ds | nellore   | venkatesh  |
+| 192224060 | akhil    | ai&ds | guntur    | prasad     |
+| 192224050 | vamsi    | cse   | chittor   | ram        |
+| 191123481 | dinesh   | cse   | kovur     | dev        |
+| 192224037 | mithil   | ai&ds | tirupathi | deepak     |
++-----------+----------+-------+-----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select name from mentee;
++----------+
+| name     |
++----------+
+| abhijith |
+| akhil    |
+| vamsi    |
+| dinesh   |
+| mithil   |
++----------+
+5 rows in set (0.00 sec)
+
+mysql> select*from mentee where name="abhijith";
++-----------+----------+-------+---------+------------+
+| regno     | name     | dept  | address | fathername |
++-----------+----------+-------+---------+------------+
+| 192224036 | abhijith | ai&ds | nellore | venkatesh  |
++-----------+----------+-------+---------+------------+
+1 row in set (0.00 sec)

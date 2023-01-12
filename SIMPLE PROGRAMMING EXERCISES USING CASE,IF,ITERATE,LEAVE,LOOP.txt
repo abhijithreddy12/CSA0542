@@ -1,0 +1,117 @@
+mysql> use saveetha;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_saveetha |
++--------------------+
+| dept               |
+| marks_view         |
+| mdept              |
+| mentee             |
+| mentee1            |
+| mentees            |
+| per                |
+| sdept              |
+| tdept              |
++--------------------+
+9 rows in set (0.01 sec)
+
+mysql> select*from mentee;
++-----------+----------+-------+----------+------------+-------+---------+
+| regno     | name     | dept  | address  | fathername | marks | subject |
++-----------+----------+-------+----------+------------+-------+---------+
+| 192224036 | abhijith | ai&ds | banglore | venkatesh  |    90 | dbms    |
+| 192224060 | akhil    | bme   | guntur   | prasad     |  NULL | bioevs  |
+| 192224050 | vamsi    | cse   | chittor  | ram        |    92 | cn      |
+| 192224037 | mithil   | ai&ds | banglore | deepak     |    90 | dbms    |
++-----------+----------+-------+----------+------------+-------+---------+
+4 rows in set (0.02 sec)
+
+mysql> select name,marks,case when marks>95 then'excellent'when marks then'good' else'average' end as performance from mentee;
++----------+-------+-------------+
+| name     | marks | performance |
++----------+-------+-------------+
+| abhijith |    90 | good        |
+| akhil    |  NULL | average     |
+| vamsi    |    92 | good        |
+| mithil   |    90 | good        |
++----------+-------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select name,marks,if(marks>=92,"excellent marks","good marks") from mentee;
++----------+-------+----------------------------------------------+
+| name     | marks | if(marks>=92,"excellent marks","good marks") |
++----------+-------+----------------------------------------------+
+| abhijith |    90 | good marks                                   |
+| akhil    |  NULL | good marks                                   |
+| vamsi    |    92 | excellent marks                              |
+| mithil   |    90 | good marks                                   |
++----------+-------+----------------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> delimiter $$
+mysql> create function repeat_demo(inc int)
+    -> returns char(40)
+    -> deterministic
+    -> begin
+    -> declare income int;
+    -> set income=0;
+    -> repeat
+    -> set income=income+inc;
+    -> until income>4000
+    -> end repeat;
+    -> return"income>4000 detected";
+    -> end;
+    -> $$
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select repeat_demo(3000);$$
++----------------------+
+| repeat_demo(3000)    |
++----------------------+
+| income>4000 detected |
++----------------------+
+1 row in set (0.01 sec)
+
+mysql> select repeat_demo(4000);$$
++----------------------+
+| repeat_demo(4000)    |
++----------------------+
+| income>4000 detected |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> delimiter $$
+mysql> create function while_demo(value char(1))
+    -> returns char(20)
+    -> deterministic
+    -> begin
+    -> declare str char(100);
+    -> declare i int;
+    -> set str='';
+    -> set i=1;
+    -> label:
+    -> while i<=5 do
+    -> set str= concat(str,value);
+    -> set i=i+1;
+    -> end while label;
+    -> return str;
+    -> end;
+    -> $$
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select while_demo('a');$$
++-----------------+
+| while_demo('a') |
++-----------------+
+| aaaaa           |
++-----------------+
+1 row in set (0.02 sec)
+
+mysql>
+
+
+
+
+
+

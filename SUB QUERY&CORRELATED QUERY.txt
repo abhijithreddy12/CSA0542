@@ -1,0 +1,223 @@
+mysql> use saveetha;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_saveetha |
++--------------------+
+| mentee             |
+| mentees            |
++--------------------+
+2 rows in set (0.01 sec)
+
+mysql> select*from mentee;
++-----------+----------+-------+----------+------------+-------+---------+
+| regno     | name     | dept  | address  | fathername | marks | subject |
++-----------+----------+-------+----------+------------+-------+---------+
+| 192224036 | abhijith | ai&ds | banglore | venkatesh  |    90 | dbms    |
+| 192224060 | akhil    | bme   | guntur   | prasad     |  NULL | bioevs  |
+| 192224050 | vamsi    | cse   | chittor  | ram        |    92 | cn      |
+| 192224037 | mithil   | ai&ds | banglore | deepak     |    90 | dbms    |
++-----------+----------+-------+----------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from mentee;
++-----------+----------+-------+----------+------------+-------+---------+
+| regno     | name     | dept  | address  | fathername | marks | subject |
++-----------+----------+-------+----------+------------+-------+---------+
+| 192224036 | abhijith | ai&ds | banglore | venkatesh  |    90 | dbms    |
+| 192224060 | akhil    | bme   | guntur   | prasad     |  NULL | bioevs  |
+| 192224050 | vamsi    | cse   | chittor  | ram        |    92 | cn      |
+| 192224037 | mithil   | ai&ds | banglore | deepak     |    90 | dbms    |
++-----------+----------+-------+----------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select regno,name from mentee where dept="cse";
++-----------+-------+
+| regno     | name  |
++-----------+-------+
+| 192224050 | vamsi |
++-----------+-------+
+1 row in set (0.00 sec)
+
+mysql> create table mentee1(id int(10),name varchar(10));
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+mysql> insert into mentee1 values(12332,"abhi");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from mentee1;
++-------+------+
+| id    | name |
++-------+------+
+| 12332 | abhi |
++-------+------+
+1 row in set (0.00 sec)
+
+mysql> select regno,(select name from mentee1 where id=12332)as name,dept,address,fathername,marks,subject from mentee where regno=12332;
+Empty set (0.00 sec)
+
+mysql> desc mentee1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| name  | varchar(10) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

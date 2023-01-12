@@ -1,0 +1,107 @@
+mysql> use saveetha;
+Database changed
+mysql> create table movies(sno int(3),moviename varchar(30),type varchar(15));
+Query OK, 0 rows affected, 1 warning (0.08 sec)
+
+mysql> insert into movies values(1,"bahubali","history");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into movies values(2,"lovetoday","love");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into movies values(3,"sahoo","action");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from movies;
++------+-----------+---------+
+| sno  | moviename | type    |
++------+-----------+---------+
+|    1 | bahubali  | history |
+|    2 | lovetoday | love    |
+|    3 | sahoo     | action  |
++------+-----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> start transaction;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> savepoint ini;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into movies values(4,"don","commerical");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from movies;
++------+-----------+------------+
+| sno  | moviename | type       |
++------+-----------+------------+
+|    1 | bahubali  | history    |
+|    2 | lovetoday | love       |
+|    3 | sahoo     | action     |
+|    4 | don       | commerical |
++------+-----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> savepoint ins;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> update movies set moviename="mr.local" where sno=5;
+Query OK, 0 rows affected (0.01 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select*from movies;
++------+-----------+------------+
+| sno  | moviename | type       |
++------+-----------+------------+
+|    1 | bahubali  | history    |
+|    2 | lovetoday | love       |
+|    3 | sahoo     | action     |
+|    4 | don       | commerical |
++------+-----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> savepoint upd;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from movies where sno=4;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from movies;
++------+-----------+---------+
+| sno  | moviename | type    |
++------+-----------+---------+
+|    1 | bahubali  | history |
+|    2 | lovetoday | love    |
+|    3 | sahoo     | action  |
++------+-----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> savepoint del;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> rollback to upd;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select*from movies;
++------+-----------+------------+
+| sno  | moviename | type       |
++------+-----------+------------+
+|    1 | bahubali  | history    |
+|    2 | lovetoday | love       |
+|    3 | sahoo     | action     |
+|    4 | don       | commerical |
++------+-----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> rollback to ini;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select*from movies;
++------+-----------+---------+
+| sno  | moviename | type    |
++------+-----------+---------+
+|    1 | bahubali  | history |
+|    2 | lovetoday | love    |
+|    3 | sahoo     | action  |
++------+-----------+---------+
+3 rows in set (0.00 sec)

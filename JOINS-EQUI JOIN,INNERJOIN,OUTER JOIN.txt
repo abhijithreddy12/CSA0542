@@ -1,0 +1,101 @@
+mysql> use saveetha;
+Database changed
+mysql> select*from mentee;
++-----------+----------+-------+----------+------------+-------+---------+
+| regno     | name     | dept  | address  | fathername | marks | subject |
++-----------+----------+-------+----------+------------+-------+---------+
+| 192224036 | abhijith | ai&ds | banglore | venkatesh  |    90 | dbms    |
+| 192224060 | akhil    | bme   | guntur   | prasad     |  NULL | bioevs  |
+| 192224050 | vamsi    | cse   | chittor  | ram        |    92 | cn      |
+| 192224037 | mithil   | ai&ds | banglore | deepak     |    90 | dbms    |
++-----------+----------+-------+----------+------------+-------+---------+
+4 rows in set (0.01 sec)
+
+mysql> create table tdept(deptid int(5),deptname varchar(20),rollno int(10));
+Query OK, 0 rows affected, 2 warnings (0.03 sec)
+
+mysql> insert into tdept values(1,"ai",192224036);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tdept values(2,"ai&ds",192224060);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tdept values(3,"cse",192224050);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> update tdept set deptid=3 where rollno=192224036;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from tdept;
++--------+----------+-----------+
+| deptid | deptname | rollno    |
++--------+----------+-----------+
+|      3 | ai       | 192224036 |
+|      2 | ai&ds    | 192224060 |
+|      3 | cse      | 192224050 |
++--------+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> update tdept set deptname="ss" where rollno=192224036;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from tdept;
++--------+----------+-----------+
+| deptid | deptname | rollno    |
++--------+----------+-----------+
+|      3 | ss       | 192224036 |
+|      2 | ai&ds    | 192224060 |
+|      3 | cse      | 192224050 |
++--------+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select deptid,deptname from tdept,mentee where mentee.regno=tdept.rollno;
++--------+----------+
+| deptid | deptname |
++--------+----------+
+|      3 | ss       |
+|      2 | ai&ds    |
+|      3 | cse      |
++--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select name,dept,deptid,deptname,rollno from tdept,mentee where mentee.regno=tdept.rollno;
++----------+-------+--------+----------+-----------+
+| name     | dept  | deptid | deptname | rollno    |
++----------+-------+--------+----------+-----------+
+| abhijith | ai&ds |      3 | ss       | 192224036 |
+| akhil    | bme   |      2 | ai&ds    | 192224060 |
+| vamsi    | cse   |      3 | cse      | 192224050 |
++----------+-------+--------+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select rollno,deptname,name,address from tdept left outer join mentee on tdept.rollno=mentee.regno;
++-----------+----------+----------+----------+
+| rollno    | deptname | name     | address  |
++-----------+----------+----------+----------+
+| 192224036 | ss       | abhijith | banglore |
+| 192224060 | ai&ds    | akhil    | guntur   |
+| 192224050 | cse      | vamsi    | chittor  |
++-----------+----------+----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> insert into tdept values(4,"ses",192224050);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into tdept values(5,"sss",192224060);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select rollno,deptname,name,address from tdept right outer join mentee on tdept.rollno=mentee.regno;
++-----------+----------+----------+----------+
+| rollno    | deptname | name     | address  |
++-----------+----------+----------+----------+
+| 192224036 | ss       | abhijith | banglore |
+| 192224060 | sss      | akhil    | guntur   |
+| 192224060 | ai&ds    | akhil    | guntur   |
+| 192224050 | ses      | vamsi    | chittor  |
+| 192224050 | cse      | vamsi    | chittor  |
+|      NULL | NULL     | mithil   | banglore |
++-----------+----------+----------+----------+
+6 rows in set (0.00 sec)

@@ -1,0 +1,70 @@
+mysql> use saveetha;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_saveetha |
++--------------------+
+| mentee             |
+| mentees            |
++--------------------+
+2 rows in set (0.00 sec)
+
+mysql> select*from mentee;
++-----------+----------+-------+----------+------------+-------+---------+
+| regno     | name     | dept  | address  | fathername | marks | subject |
++-----------+----------+-------+----------+------------+-------+---------+
+| 192224036 | abhijith | ai&ds | banglore | venkatesh  |    90 | dbms    |
+| 192224060 | akhil    | bme   | guntur   | prasad     |  NULL | bioevs  |
+| 192224050 | vamsi    | cse   | chittor  | ram        |    92 | cn      |
+| 192224037 | mithil   | ai&ds | banglore | deepak     |    90 | dbms    |
++-----------+----------+-------+----------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentee order by name;
++-----------+----------+-------+----------+------------+-------+---------+
+| regno     | name     | dept  | address  | fathername | marks | subject |
++-----------+----------+-------+----------+------------+-------+---------+
+| 192224036 | abhijith | ai&ds | banglore | venkatesh  |    90 | dbms    |
+| 192224060 | akhil    | bme   | guntur   | prasad     |  NULL | bioevs  |
+| 192224037 | mithil   | ai&ds | banglore | deepak     |    90 | dbms    |
+| 192224050 | vamsi    | cse   | chittor  | ram        |    92 | cn      |
++-----------+----------+-------+----------+------------+-------+---------+
+4 rows in set (0.02 sec)
+
+mysql> select*from mentee order by marks;
++-----------+----------+-------+----------+------------+-------+---------+
+| regno     | name     | dept  | address  | fathername | marks | subject |
++-----------+----------+-------+----------+------------+-------+---------+
+| 192224060 | akhil    | bme   | guntur   | prasad     |  NULL | bioevs  |
+| 192224036 | abhijith | ai&ds | banglore | venkatesh  |    90 | dbms    |
+| 192224037 | mithil   | ai&ds | banglore | deepak     |    90 | dbms    |
+| 192224050 | vamsi    | cse   | chittor  | ram        |    92 | cn      |
++-----------+----------+-------+----------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentee order by dept;
++-----------+----------+-------+----------+------------+-------+---------+
+| regno     | name     | dept  | address  | fathername | marks | subject |
++-----------+----------+-------+----------+------------+-------+---------+
+| 192224036 | abhijith | ai&ds | banglore | venkatesh  |    90 | dbms    |
+| 192224037 | mithil   | ai&ds | banglore | deepak     |    90 | dbms    |
+| 192224060 | akhil    | bme   | guntur   | prasad     |  NULL | bioevs  |
+| 192224050 | vamsi    | cse   | chittor  | ram        |    92 | cn      |
++-----------+----------+-------+----------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentee having marks>95;
+Empty set (0.00 sec)
+
+mysql> select*from mentee having marks>90;
++-----------+-------+------+---------+------------+-------+---------+
+| regno     | name  | dept | address | fathername | marks | subject |
++-----------+-------+------+---------+------------+-------+---------+
+| 192224050 | vamsi | cse  | chittor | ram        |    92 | cn      |
++-----------+-------+------+---------+------------+-------+---------+
+1 row in set (0.00 sec)
+
+
+
+
+
